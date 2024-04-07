@@ -7,7 +7,6 @@ import com.example.meals.data.network.ApiService
 import com.example.meals.domain.Category
 import com.example.meals.domain.Meal
 import com.example.meals.domain.MealsRepository
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class MealsRepositoryImpl @Inject constructor(
@@ -29,21 +28,19 @@ class MealsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun loadData() {
-        while (true) {
-            try {
-                val meals = apiService.getMealsList().meals.map { mapper.mapDtoMealToDbModel(it) }
-                mealsDao.insertMealsList(meals)
+        try {
+            val meals = apiService.getMealsList().meals.map { mapper.mapDtoMealToDbModel(it) }
+            mealsDao.insertMealsList(meals)
 
-                val categories =
-                    apiService.getCategoriesList().categories.map {
-                        mapper.mapDtoCategoryToDbModel(
-                            it
-                        )
-                    }
-                mealsDao.insertCategoriesList(categories)
-            } catch (_: Exception) {
-            }
-            delay(20000)
+            val categories =
+                apiService.getCategoriesList().categories.map {
+                    mapper.mapDtoCategoryToDbModel(
+                        it
+                    )
+                }
+            mealsDao.insertCategoriesList(categories)
+        } catch (_: Exception) {
+
         }
     }
 
