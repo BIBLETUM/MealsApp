@@ -4,4 +4,8 @@
     <string name="price_template">От %s Р</string>
     <string name="profile">Профиль</string>
     <string name="cart">Корзина</string>
+    <string name="moscow">Москва</string>
+    <string name="kazan">Казань</string>
+    <string name="ufa">Уфа</string>
+    <string name="no_meals_for_this_category">Нет позиций по данной категории</string>
 </resources>
