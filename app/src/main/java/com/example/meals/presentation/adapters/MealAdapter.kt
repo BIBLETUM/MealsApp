@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.meals.R
 import com.example.meals.databinding.ItemMealBinding
+import com.example.meals.domain.Category
 import com.example.meals.domain.Meal
 import com.squareup.picasso.Picasso
 
@@ -35,4 +36,13 @@ class MealAdapter(
             Picasso.get().load(meal.strMealThumb).into(mealImageView)
         }
     }
+
+    fun getFirstPositionOfCategory(category: Category): Int {
+        return currentList.indexOfFirst { it.strCategory == category.strCategory }
+    }
+
+    companion object {
+
+    }
+
 }
